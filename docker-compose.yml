@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  backend:
+    build: ./server
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "8888:8888"
+    environment:
+      - DATABASE=mongodb://mongo:27017
+      - PORT=8888
+
+    command: sh -c "npm run dev"
+
+    networks:
+      - server-mongo
+
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./client
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      - backend
+
+  mongo:
+    image: mongo
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - server-mongo
+
+volumes:
+  mongodb_data:
+
+networks:
+  server-mongo:
