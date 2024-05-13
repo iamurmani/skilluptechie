@@ -1,4 +1,5 @@
 const path = require("path");
+const connectDB = require('./config/dbConnection');
 
 require("dotenv").config({
   path: path.resolve(__dirname, `${process.env.NODE_ENV}.env`),
@@ -8,6 +9,9 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
+//Connect Mongodb
+connectDB();
+
 //App initialized :
 let app = express();
 
@@ -16,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 //Initialize DotEnv Datas :
-let PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 8888;
 
 // Test Router
 app.get("/helloworld", (req, res) => {
