@@ -2,7 +2,7 @@ const path = require("path");
 const connectDB = require('./config/dbConnection');
 
 require("dotenv").config({
-  path: path.resolve(__dirname, `${process.env.NODE_ENV}.env`),
+  path: '.env',
 });
 
 const express = require("express");
@@ -32,5 +32,5 @@ app.get("/helloworld", (req, res) => {
 //MongoDB Conncetion established:
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT} ${process.env.NAME}`);
+  console.log(`Server is running on port ${PORT}`);
 });
