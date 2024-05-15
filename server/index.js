@@ -22,12 +22,31 @@ app.use(express.json());
 //Initialize DotEnv Datas :
 let PORT = process.env.PORT || 8888;
 
+
+
+app.use('/api/v1/admin', require('./router/admin/admin-router')) 
+
 // Test Router
 app.get("/helloworld", (req, res) => {
   res.send(
     `server is running Sucessfully ${process.env.NAME} & ${process.env.NODE_ENV}`
   );
 });
+
+
+
+//Common Error handler
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.send({
+      error: {
+          success: false,
+          status: err.status || 500,
+          message: err.message
+      }
+  })
+})
+
 
 //MongoDB Conncetion established:
 // Start the server
