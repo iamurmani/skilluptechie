@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "prod": "cross-env NODE_ENV=production&& nodemon index.js"
+    "prod": "SET NODE_ENV=production&& nodemon index.js"
   },
   "keywords": [],
   "author": "",
