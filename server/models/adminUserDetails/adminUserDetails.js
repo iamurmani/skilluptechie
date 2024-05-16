@@ -5,14 +5,11 @@ const Schema = mongoose.Schema;
 const adminUserDetailsSchema = new Schema({
   username: {
     type: String,
-    unique: true,
-    sparse: true, // Allows multiple documents to have no value for this field
   },
   email: {
     type: String,
-    unique: true,
+
     lowercase: true,
-    sparse: true,
   },
   password: {
     type: String,
@@ -20,6 +17,7 @@ const adminUserDetailsSchema = new Schema({
   },
   role: {
     type: String,
+    required:true,
     enum: ["user", "admin"],
     default: "user",
   },
@@ -28,12 +26,6 @@ const adminUserDetailsSchema = new Schema({
     default: Date.now,
   },
 });
-
-adminUserDetailsSchema.clearIndexes(
-  { username: 1, email: 1 },
-  { unique: true, partialFilterExpression: { email: { $exists: true } } }
-)
-
 
 // Ensure that either username or email is provided
 adminUserDetailsSchema.path("username").required(function () {
