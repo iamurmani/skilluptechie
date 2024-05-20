@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { TextField, Button, IconButton, Container, Typography, Box, Link } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function LoginPage() {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -24,9 +26,11 @@ function LoginPage() {
             });
             console.log('Login successful:', response.data);
             localStorage.setItem('token', response.data.jwt);
+            toast.success('Login successful!');
         } catch (error) {
             console.error('Error logging in:', error.response.data);
             setError('Login failed. Please check your credentials and try again.');
+            toast.error('Login failed. Please check your credentials and try again.');
         }
     };
 
@@ -160,6 +164,7 @@ function LoginPage() {
             >
                 <path fill="#5AB2FF" fillOpacity="1" d="M0,224L48,213.3C96,203,192,181,288,165.3C384,149,480,139,576,160C672,181,768,235,864,234.7C960,235,1056,181,1152,170.7C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
             </svg>
+            <ToastContainer />
         </>
     );
 }
