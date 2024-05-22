@@ -9,30 +9,30 @@ const { sendResponse } = require("../../helper/responseHelper");
 module.exports = {
   //route:/api/v1/admin/registerAdmin
   //access:public
-  registerAdmin: async (req, res, next) => {
-    try {
-      // Hashing password
-      req.body.password = encryptPassword(req.body.password);
-      let existUser = await AdminUserDetails.findOne({
-        $or: [
-          {
-            $and: [{ username: req.body.username }, { username: { $ne: "" } }],
-          },
-          { $and: [{ email: req.body.email }, { email: { $ne: "" } }] },
-        ],
-      });
+  // registerAdmin: async (req, res, next) => {
+  //   try {
+  //     // Hashing password
+  //     req.body.password = encryptPassword(req.body.password);
+  //     let existUser = await AdminUserDetails.findOne({
+  //       $or: [
+  //         {
+  //           $and: [{ username: req.body.username }, { username: { $ne: "" } }],
+  //         },
+  //         { $and: [{ email: req.body.email }, { email: { $ne: "" } }] },
+  //       ],
+  //     });
 
-      if (existUser) {
-        sendResponse(200, null, "Admin Already Exist",res);
-      } else {
-        const newAdmin = new AdminUserDetails(req.body);
-        const result = await newAdmin.save();
-        sendResponse(200, null, "Admin created successfully",res);
-      }
-    } catch (error) {
-      next(new Error(error));
-    }
-  },
+  //     if (existUser) {
+  //       sendResponse(200, null, "Admin Already Exist",res);
+  //     } else {
+  //       const newAdmin = new AdminUserDetails(req.body);
+  //       const result = await newAdmin.save();
+  //       sendResponse(200, null, "Admin created successfully",res);
+  //     }
+  //   } catch (error) {
+  //     next(new Error(error));
+  //   }
+  // },
 
   //route:/api/v1/admin/loginAdmin
   //access:public

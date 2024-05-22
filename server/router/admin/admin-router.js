@@ -5,7 +5,7 @@ const {registerAdmin,loginAdmin} =require("../../controller/admin/admin-controll
 
 
 // Register Admin
-router.post('/register', registerAdmin)
+// router.post('/register', registerAdmin)
 router.post('/loginAdmin', loginAdmin)
 
 
