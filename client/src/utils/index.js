@@ -1,0 +1,1 @@
+// this folder belongs to keep constants, reusable functions, etc.
