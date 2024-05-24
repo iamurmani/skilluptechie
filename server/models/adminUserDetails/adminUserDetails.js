@@ -8,7 +8,7 @@ const adminUserDetailsSchema = new Schema({
   },
   email: {
     type: String,
-
+    match: [/^\S+@\S+\.\S+$/, 'Please provide a valid email address'],
     lowercase: true,
   },
   password: {
@@ -24,6 +24,7 @@ const adminUserDetailsSchema = new Schema({
   createDate: {
     type: Date,
     default: Date.now,
+    
   },
 });
 
