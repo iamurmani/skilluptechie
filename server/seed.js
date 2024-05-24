@@ -20,12 +20,22 @@ async function createAdminUser() {
     }
 
     const hashedPassword = await bcrypt.hash(adminPassword, 10);
-    const newAdmin = new AdminUserDetails({
+
+    // check already exist
+    const existUser = await AdminUserDetails.findOne({
+      $and: [{ email: adminUseremail }, { email: { $ne: "" } }],
+    });
+
+    if (existUser) {
+      console.log(`Already Exist on this ${existUser} mail_id`);
+      process.exit(0);
+    }
+    const result = await AdminUserDetails.create({
       email: adminUseremail,
       password: hashedPassword,
       role: "admin",
     });
-    const result = await newAdmin.save();
+
     if (result) {
       console.log(result);
       process.exit(0);
