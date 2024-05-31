@@ -1,15 +1,16 @@
 import './App.css'
-import Button from '@mui/material/Button';
-
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Home from './components/Home';
+import AdminSideBar from './feature/AdminSideBar';
 
 function App() {
 
   return (
-    <>
-    {/* Added for testing tailwind and material UI Remove it later */}
-      <h1 className="text-3xl font-bold underline text-center">Welcome To Skill Up Techie</h1>
-      <Button variant="contained">Click Me</Button>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route  path='/' element={<AdminSideBar />}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
