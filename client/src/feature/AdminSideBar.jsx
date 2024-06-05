@@ -2,35 +2,11 @@ import React, { useState } from 'react';
 import adminLogo from "../images/sidebarlogo.png";
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
-import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import ViewInArIcon from '@mui/icons-material/ViewInAr';
+import { adminNavigationMenus } from '../utils/AdminNavigationMenus';
 
 const AdminSideBar = () => {
 
-
-  const adminMenu = [
-    {
-      id : 1,
-      mainButton : "Questions",
-      mainButtonIcons : <CodeOutlinedIcon />,
-      subMainButtons : ["List Questions", "Create Question", ],
-    },
-    {
-      id : 2,
-      mainButton : "Users",
-      mainButtonIcons : <AccountCircleOutlinedIcon />,
-      subMainButtons : ["List Users", "Create Users", ],
-    },
-    {
-      id : 3,
-      mainButton : "Language",
-      mainButtonIcons : <ViewInArIcon />,
-      subMainButtons : ["Java", "Python", "C++", "JavaScript", ],
-    },
-    
-  ]
 
   const [ visibleList, setVisibleList ] = useState(null);
 
@@ -41,7 +17,7 @@ const AdminSideBar = () => {
   // const hideVisibility = () => setVisibleList(null);
 
   return (
-    <aside className='bg-[#121621] w-[110px] fixed md:w-[317px] h-screen overflow-hidden overflow-y-scroll'>
+    <div className='bg-[#121621] w-[110px] md:w-[317px] h-screen overflow-hidden overflow-y-scroll'>
        <div className='relative w-24 h-24 top-1 left-5'>
           <img src={adminLogo} loading='lazy' alt='logo' />
        </div>
@@ -62,7 +38,7 @@ const AdminSideBar = () => {
          <h4 className='w-24  h-6 font-bold md:text-xl text-[#8A94A6] font-Inria'>General</h4>
          <div>
           {
-            adminMenu.map((item) => (
+            adminNavigationMenus.map((item) => (
           <div key={item.id}>
             <button className='flex justify-between ml-3 w-[60px] md:w-[270px] items-center mx-2 rounded-lg p-4 mt-3 cursor-pointer
              hover:bg-[#635BFF] hover:duration-100 hover:scale-105 text-[#FFFFFF]' onClick={() => toggleVisibility(item.mainButton)}>
@@ -96,7 +72,7 @@ const AdminSideBar = () => {
           }
          </div>
        </div>
-    </aside>
+    </div>
   )
 }
 
