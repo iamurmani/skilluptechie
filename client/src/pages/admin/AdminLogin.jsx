@@ -14,7 +14,7 @@ const schema = yup.object({
     email: yup.string().email().required("Please enter email"),
     password: yup.string().required("Please enter password")
 })
-export const AdminLogin = () => {
+ const AdminLogin = () => {
     const { setAdminAuth } = useAdminAuth();
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [loginErr, setLoginErr] = useState();
@@ -79,3 +79,5 @@ export const AdminLogin = () => {
         </div>
     )
 }
+
+export default AdminLogin;

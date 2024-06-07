@@ -5,6 +5,7 @@ import useAdminAuth from "../../hooks/userAdminAuth";
 const RequireAdminAuth = () => {
     const { adminAuth } = useAdminAuth();
     const location = useLocation()
+    alert("i am coming")
     return (
         adminAuth?.user 
         ? <Outlet/>
