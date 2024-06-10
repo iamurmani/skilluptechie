@@ -8,6 +8,8 @@ export const AdminPublicRoutes = [
   },
 ];
 
+
+
 export const AdminPrivateRoutes = [
   {
     name: "OverView",

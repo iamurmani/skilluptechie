@@ -2,11 +2,21 @@
 
 import React from "react";
 import { AdminAuthProvider } from "../context/AdminAuthProvider";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import theme from "../utils/MUITheme";
+import { store } from "../redux/store";
+import { Provider } from "react-redux";
 
-const Providers = ({children}) => {
+const Providers = ({ children }) => {
   return (
     <>
-      <AdminAuthProvider>{children}</AdminAuthProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+
+          <AdminAuthProvider>{children}</AdminAuthProvider>
+        </ThemeProvider>
+      </Provider>
     </>
   );
 };

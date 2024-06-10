@@ -6,7 +6,7 @@ const AdminAuthContext = createContext({});
 const INITIALSTAGE = JSON.parse(localStorage.getItem("user")) || {};
 
 export const AdminAuthProvider = ({ children }) => {
-  const [adminAuth, setAdminAuth] = useState("mani");
+  const [adminAuth, setAdminAuth] = useState(INITIALSTAGE);
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(adminAuth));

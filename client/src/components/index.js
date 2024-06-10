@@ -1,1 +1,0 @@
-// folder belongs to components like buttons, header, etc.
