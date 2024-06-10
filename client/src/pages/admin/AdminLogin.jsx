@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { login } from '../../controllers/services/adminAuth.service';
-import useAdminAuth from '../../hooks/userAdminAuth';
+import {useAdminAuth} from '../../context/AdminAuthProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const schema = yup.object({

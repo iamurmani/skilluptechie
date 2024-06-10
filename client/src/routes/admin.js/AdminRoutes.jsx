@@ -2,14 +2,17 @@ import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import AdminLayout from "../../layouts/admin/AdminLayout";
 import { DashboardLayout } from "../../layouts/admin/DashboardLayout";
-import OverView from "../../pages/admin/OverView";
 import { AdminPrivateRoutes, AdminPublicRoutes } from "./AdminRoutesConstants";
+import { useAdminAuth } from "../../context/AdminAuthProvider";
 
 const Authentication = (Component) => {
   return false ? <Component /> : <Navigate to="/admin/login" replace={true} />;
 };
 
 function AdminRoutes() {
+  const result = useAdminAuth();
+  
+
   return (
     <Routes>
       <Route path="/admin" element={<AdminLayout />}>
@@ -33,8 +36,7 @@ function AdminRoutes() {
           ))}
 
           {/* others routes */}
-          <Route path="/" element={<Main />} />
-          
+          {/* <Route path="/" element={<Main />} /> */}
         </Route>
       </Route>
     </Routes>
