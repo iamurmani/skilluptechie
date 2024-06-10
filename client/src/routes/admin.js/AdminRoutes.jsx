@@ -1,9 +1,13 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import AdminLayout from "../../layouts/admin/AdminLayout";
 import { DashboardLayout } from "../../layouts/admin/DashboardLayout";
 import OverView from "../../pages/admin/OverView";
 import { AdminPrivateRoutes, AdminPublicRoutes } from "./AdminRoutesConstants";
+
+const Authentication = (Component) => {
+  return false ? <Component /> : <Navigate to="/admin/login" replace={true} />;
+};
 
 function AdminRoutes() {
   return (
@@ -18,16 +22,19 @@ function AdminRoutes() {
           />
         ))}
 
+        {/* Private  routes */}
         <Route path="dashboard" element={<DashboardLayout />}>
-          {/* Private  routes */}
           {AdminPrivateRoutes.map((ele, index) => (
             <Route
               key={`route-${index}`}
               path={ele.path}
-              element={<ele.component />}
+              element={Authentication(ele.component)}
             />
           ))}
-          <Route path="overview" element={<OverView />} />
+
+          {/* others routes */}
+          <Route path="/" element={<Main />} />
+          
         </Route>
       </Route>
     </Routes>

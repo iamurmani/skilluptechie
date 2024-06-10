@@ -14,6 +14,7 @@ const schema = yup.object({
     email: yup.string().email().required("Please enter email"),
     password: yup.string().required("Please enter password")
 })
+
  const AdminLogin = () => {
     const { setAdminAuth } = useAdminAuth();
     const [passwordVisible, setPasswordVisible] = useState(false);
